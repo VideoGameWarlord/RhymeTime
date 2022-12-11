@@ -10,69 +10,149 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="/css/app.css">
     <script type="text/javascript" src="/js/materialize.min.js"></script>
+    <script src="/js/ui.js"></script>
+    <script type="module" src="/js/app.js"></script>
+    <script type="module" src="/js/auth.js"></script>
 </head>
 
 <body class="grey lighten-4">
-        <div class="container">
-            <h5>Rhyme Time</h5>
+    <nav class="nav-extended">
+        <div class="nav-wrapper container">
+            <a href="/" class="brand-logo">Rhyme Time</a>
+            <span class="right grey-text text-darken-1">
+            <i class="sidenav-trigger material-icons" data-target="side-menu">menu</i>
+          </span>
         </div>
+      </nav>
 
-    <div class="row">
-      <div class="col s6 offset-s5">
-        Rhymes With:
-        <div class="input-field inline">
-          <input type="text">
+      <ul id="side-menu" class="sidenav side-menu">
+        <li><a class="subheader">Rhyme Time </a></li>
+        <li class="logged-in">
+          <a href="#" class="waves-effect modal-trigger" data-target="modal-target">Account</a>
+        </li>
+        <li class="logged-in">
+          <a href="#" class="waves-effect" id="logout">Logout</a>
+        </li>
+        <li class="logged-out">
+          <a href="#" class="waves-effect modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out">
+          <a href="#" class="waves-effect modal-trigger" data-target="modal-signup">Register</a>
+        </li>
+
+        <li> 
+          <div class="divider"></div>
+        </li>
+      </ul>
+
+      <div id="modal-signup" class="modal">
+        <div class="modal-content">
+          <h4>Sign Up</h4>
+          <form id="signup-form">
+            <div class="input-field">
+              <input type="text" id="signup-email" required>
+              <label for="signup-email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="signup-password" required>
+              <label for="signup-password">Password</label>
+            </div>
+            <div class="input-field">
+              <button class="btn pink lighten-1 z-depth-0">Sign Up</button>
+            </div>
         </div>
       </div>
 
-        <form class="col s6 offset-s5">
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text">
+      <div id="modal-login" class="modal">
+        <div class="modal-content">
+          <h4>Login</h4>
+          <form id="login-form">
+            <div class="input-field">
+              <input type="text" id="login-email" required>
+              <label for="login-email">Email</label>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text">
+            <div class="input-field">
+              <input type="password" id="login-password" required>
+              <label for="login-password">Password</label>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text">
+            <div class="input-field">
+              <button class="btn pink lighten-1 z-depth-0">Login</button>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text">
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="input-field col s3">
-              <input type="text">
-            </div>
-          </div>
-
-        </form>
+        </div>
       </div>
 
-      <div class="row">
-        <div class="col s6 offset-s4">
-          <a class="waves-effect waves-teal btn-flat">Q</a>
-          <a class="waves-effect waves-teal btn-flat">W</a>
-          <a class="waves-effect waves-teal btn-flat">E</a>
-          <a class="waves-effect waves-teal btn-flat">R</a>
-          <a class="waves-effect waves-teal btn-flat">T</a>
-          <a class="waves-effect waves-teal btn-flat">Y</a>
-          <a class="waves-effect waves-teal btn-flat">U</a>
-          <a class="waves-effect waves-teal btn-flat">I</a>
-          <a class="waves-effect waves-teal btn-flat">O</a>
-          <a class="waves-effect waves-teal btn-flat">P</a>
+      <div id="modal-target" class="modal">
+        <div class="modal-content">
+          <h4>Account</h4>
+          <p>Change your account details</p>
+          <form id="account-form">
+            <div class="input-field">
+              <input type="text" id="account-email" required>
+              <label for="account-email">Email</label>
+            </div>
+            <div class="input-field">
+              <input type="password" id="account-password" required>
+              <label for="account-password">Password</label>
+            </div>
+            <div class="input-field">
+              <button class="btn pink lighten-1 z-depth-0">Save</button>
+            </div>
+        </div>
+      </div>
+
+      <div id="container">
+        <div id="game">
+          <header>
+            <h1 class="title">Rhyme Time</h1>
+          </header>
+  
+          <div id="board-container">
+            <div id="board"></div>
+          </div>
+  
+          <div id="keyboard-container">
+            <div class="keyboard-row">
+              <button class="waves-effect waves-teal btn-flat" data-key="q">q</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="w">w</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="e">e</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="r">r</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="t">t</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="y">y</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="u">u</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="i">i</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="o">o</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="p">p</button>
+            </div>
+            <div class="keyboard-row">
+              <div class="spacer-half"></div>
+              <button class="waves-effect waves-teal btn-flat" data-key="a">a</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="s">s</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="d">d</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="f">f</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="g">g</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="h">h</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="j">j</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="k">k</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="l">l</button>
+              <div class="spacer-half"></div>
+            </div>
+            <div class="keyboard-row">
+              <button class="waves-effect waves-teal btn-flat" data-key="enter" class="wide-button">Enter</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="z">z</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="x">x</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="c">c</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="v">v</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="b">b</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="n">n</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="m">m</button>
+              <button class="waves-effect waves-teal btn-flat" data-key="del" class="wide-button">Del</button>
+            </div>
           </div>
         </div>
+      </div>
+
+      <div id="side-form" class="sidenav side-form">
+        <form class ></form>
       </div>
 
 
